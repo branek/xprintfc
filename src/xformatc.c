@@ -586,6 +586,12 @@ unsigned xvformat(void (*outchar)(void *,char),void *arg,const char * fmt,va_lis
 					param.width = (int)va_arg(args,int);
 				else
 					param.width = param.width * 10 + (c - '0');
+
+				if (param.width < 0)
+				{
+					param.flags |= FLAG_LEFT;
+					param.width *= -1;
+				}
 				break;
 
 			case	ST_DOT:
@@ -770,6 +776,10 @@ unsigned xvformat(void (*outchar)(void *,char),void *arg,const char * fmt,va_lis
 						if (param.out == 0)
 							param.out = (char *)ms_null;
 						param.length = (int)xstrlen(param.out);
+						if ((param.prec != 0) && (param.length > param.prec))
+						{
+							param.length = param.prec;
+						}
 						break;
 
 						/*

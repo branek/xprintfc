@@ -111,6 +111,14 @@ int main(void)
     testFormat("Hello %s","World");
     testFormat("String %4.4s","Large");
     testFormat("String %*.*s",4,4,"Hello");
+    testFormat("String %.*s",4,"Hello");
+    testFormat("String %*.*s",17,5,"Hello World");
+    testFormat("String %-*.*s",17,5,"Hello World");
+    testFormat("String %*.*s",-17,5,"Hello World");
+    testFormat("String %.*s",19,"Hello");
+    testFormat("String %*.*s",17,19,"Hello World");
+    testFormat("String %-*.*s",17,19,"Hello World");
+    testFormat("String %*.*s",-17,19,"Hello World");
     testFormat("integer %05d %+d %d %2d %5d",-7,7,-7,1234,1234);
     testFormat("Integer %+05d %-5d % 5d %05d",1234,1234,1234,1234);
     testFormat("Integer blank % d % d",1,-1);
